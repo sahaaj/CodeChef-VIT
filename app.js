@@ -7,10 +7,13 @@ const session = require('express-session');
 
 const app = express();
 
-// Passport Config
+// Set Static Folder
+app.use(express.static('./public'));
+
+// Passport.js Configuration
 require('./config/passport')(passport);
 
-// DB Config
+// DataBase Config
 const db = require('./config/keys').mongoURI;
 
 // Connect to MongoDB
@@ -24,7 +27,7 @@ mongoose
   .then(() => console.log('MongoDB Connected'))
   .catch(err => console.log(err));
 
-// EJS
+// Set template to EJS
 app.use(expressLayouts);
 app.set('view engine', 'ejs');
 
